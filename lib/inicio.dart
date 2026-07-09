@@ -6,45 +6,60 @@ class Inicio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final ancho = size.width;
+    final alto = size.height;
+
     return Scaffold(
       appBar: AppBar(title: const Text("Cafeteria Flutter"), centerTitle: true),
 
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
+        child: SizedBox(
+          width: double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(height: 20),
 
-            Image.asset("assets/logo.png", width: 120),
+              Image.asset("assets/logo.png", width: ancho * 0.30),
 
-            const SizedBox(height: 20),
+              const SizedBox(height: 20),
 
-            const Text(
-              "Bienvenido",
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-            ),
-
-            const Padding(
-              padding: EdgeInsets.all(15),
-              child: Text(
-                "Nuestra cafeteria ofrece los mejores cafes de la ciudad.",
-                textAlign: TextAlign.center,
+              Text(
+                "Bienvenido",
+                style: TextStyle(fontSize: ancho * 0.07, fontWeight: FontWeight.bold),
               ),
-            ),
 
-            Image.asset("assets/cafe.jpg", height: 200),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: ancho * 0.05,
+                  ),
+                child: Text(
+                  "Nuestra cafeteria ofrece los mejores cafes de la ciudad.",
+                  textAlign: TextAlign.center,
+                ),
+              ),
 
-            const SizedBox(height: 20),
+              Image.asset("assets/cafe.jpg", height: alto*0.25,width: ancho * 0.90,fit: BoxFit.cover),
 
-            ElevatedButton(
-              child: const Text("Ver productos"),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Productos()),
-                );
-              },
-            ),
-          ],
+              const SizedBox(height: 20),
+
+              SizedBox(
+                width: ancho * 0.80,
+                child:ElevatedButton(
+                child: const Text("Ver productos"),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Productos()),
+                  );
+                },
+              ),
+              )
+
+              
+            ],
+          ),
         ),
       ),
     );
